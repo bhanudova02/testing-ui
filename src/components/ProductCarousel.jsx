@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 
 export default function VideoShortsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -165,7 +166,7 @@ export default function VideoShortsCarousel() {
             onClick={handlePrev}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-gray-900/80 hover:bg-gray-800/90 text-white px-3 py-10 rounded-md shadow-lg transition-all transform hover:scale-110"
           >
-            <span className="text-2xl">{"<"}</span>
+            <HiOutlineChevronLeft className="text-2xl"/>
           </button>
         )}
 
@@ -210,7 +211,7 @@ export default function VideoShortsCarousel() {
             onClick={handleNext}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-gray-900/80 hover:bg-gray-800/90 text-white px-3 py-10 rounded-md shadow-lg transition-all transform hover:scale-110"
           >
-            <span className="text-2xl">{">"}</span>
+            <HiOutlineChevronRight className="text-2xl"/>
           </button>
         )}
       </div>
