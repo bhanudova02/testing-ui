@@ -215,6 +215,88 @@ export default function VideoShortsCarousel() {
         )}
       </div>
 
+        {/* CONDITIONAL MODALS - Either 3D Carousel for Desktop or Vertical Scroll for Mobile/Tablet */}
+      {isModalOpen && !isMobileView && (
+        // 3D Carousel Modal for Desktop
+        <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+          <button
+            className="absolute top-8 right-56 duration-300 transition-all text-white text-3xl z-50 hover:bg-stone-200/10 cursor-pointer rounded-md w-14 h-14"
+            onClick={() => setIsModalOpen(false)}
+          >
+            ✕
+          </button>
+
+          {modalIndex > 0 && (
+            <button
+              className="absolute left-40 text-white text-6xl bg-stone-950 hover:bg-stone-800 cursor-pointer duration-300 transition-all py-10 rounded-md z-40 border border-white/10 hover:border-white/50"
+              onClick={() => setModalIndex((prev) => Math.max(prev - 1, 0))}
+            >
+              <BsChevronLeft />
+            </button>
+          )}
+
+          {/* 3D Carousel Video Display */}
+          <div className="w-full max-w-6xl h-[80vh] relative flex items-center justify-center perspective-[1500px]">
+            {videos.map((video, index) => {
+              const offset = index - modalIndex;
+              let transform = "";
+              let zIndex = 0;
+              let opacity = "opacity-0 pointer-events-none";
+              let sizeClasses = "";
+
+              const isMainVideo = index === modalIndex;
+
+              if (offset === 0) {
+                transform = "translateX(0) scale(1) rotateY(0deg)";
+                zIndex = 10;
+                opacity = "opacity-100 pointer-events-auto";
+                sizeClasses = "w-[300px] md:w-[350px] h-[600px] md:h-[720px]";
+              } else if (offset === -1) {
+                transform = "translateX(-75%) scale(0.6) rotateY(30deg)";
+                zIndex = 5;
+                opacity = "opacity-50 pointer-events-none";
+                sizeClasses = "w-1/3 h-auto";
+              } else if (offset === 1) {
+                transform = "translateX(75%) scale(0.6) rotateY(-30deg)";
+                zIndex = 5;
+                opacity = "opacity-50 pointer-events-none";
+                sizeClasses = "w-1/3 h-auto";
+              }
+
+              return (
+                <div
+                  key={video.id}
+                  className={`absolute ${sizeClasses} ${opacity} transform transition-all duration-500 ease-in-out`}
+                  style={{ transform, zIndex }}
+                >
+                  <video
+                    ref={(el) => {
+                      if (el) modalVideoRefs.current[index] = el;
+                    }}
+                    src={video.videoUrl}
+                    autoPlay={index === modalIndex}
+                    muted={!isMainVideo}
+                    loop
+                    playsInline
+                    controls={isMainVideo}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {modalIndex < videos.length - 1 && (
+            <button
+              className="absolute right-40 text-white text-6xl bg-stone-950 hover:bg-stone-800 cursor-pointer duration-300 transition-all py-10 rounded-md z-40 border border-white/10 hover:border-white/50"
+              onClick={() => setModalIndex((prev) => Math.min(prev + 1, videos.length - 1))}
+            >
+              <BsChevronRight />
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Modal for Mobile/Tablet (Vertical Reels Style) */}
       {isModalOpen && isMobileView && (
         <div className="fixed inset-0 z-50 bg-black overflow-y-scroll snap-y snap-mandatory">
