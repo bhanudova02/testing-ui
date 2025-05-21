@@ -1,9 +1,12 @@
-import ProductCarousel from "./components/ProductCarousel";
+import VideoShortsCarouselMobile from "./components/VideoShortsCarouselMobile";
 
-export default function App() {
+const App = () => {
+
   return (
     <div>
-      <ProductCarousel/>
+      <VideoShortsCarouselMobile />
     </div>
   );
-}
+};
+
+export default App;
