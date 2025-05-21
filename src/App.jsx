@@ -1,9 +1,16 @@
-import ProductCarousel from "./components/ProductCarousel";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import LoginPage from "./components/LoginPage";
 
-export default function App() {
+const App = () => {
   return (
     <div>
-      <ProductCarousel/>
+      <Routes>
+        <Route path="/" element={<LoginPage/>}/>
+        <Route path="/home" element={<Home/>}/>
+      </Routes>
     </div>
   );
-}
+};
+
+export default App;
