@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
     const navigate = useNavigate();
 
-    // Custom Btn Functonality
+    // Custom Btn Functon
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => { // Rename to tokenResponse for clarity
             console.log("Token Response from useGoogleLogin:", tokenResponse);
