@@ -13,19 +13,13 @@
     "@react-oauth/google": "^0.12.2",
     "@tailwindcss/vite": "^4.1.6",
     "hls.js": "^1.6.2",
-<<<<<<< HEAD
     "jwt-decode": "^4.0.0",
-=======
->>>>>>> 8dfbf4b74868862f64c25d2963162f658e3c263c
     "lucide-react": "^0.509.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-player": "^2.16.0",
-<<<<<<< HEAD
     "react-router-dom": "^7.6.2",
-=======
->>>>>>> 8dfbf4b74868862f64c25d2963162f658e3c263c
     "swiper": "^11.2.7",
     "tailwindcss": "^4.1.6",
     "video.js": "^8.22.0"
